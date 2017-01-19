@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26020.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlToCsharp", "src\SqlToCsharp\SqlToCsharp.csproj", "{EA95AB9D-3613-44EF-B408-3E723F3E343C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21656360-6BC2-4DB3-9C1B-094DAC30630B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA95AB9D-3613-44EF-B408-3E723F3E343C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA95AB9D-3613-44EF-B408-3E723F3E343C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA95AB9D-3613-44EF-B408-3E723F3E343C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA95AB9D-3613-44EF-B408-3E723F3E343C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA95AB9D-3613-44EF-B408-3E723F3E343C} = {21656360-6BC2-4DB3-9C1B-094DAC30630B}
+	EndGlobalSection
+EndGlobal

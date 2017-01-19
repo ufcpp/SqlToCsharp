@@ -1,0 +1,12 @@
+﻿{
+  "frameworks": {
+    "net45": {}
+  },
+  "runtimes": {
+    "win": {},
+    "win-anycpu": {}
+  },
+  "dependencies": {
+    "Microsoft.SqlServer.TransactSql.ScriptDom": "13.0.1700.77"
+  }
+}
