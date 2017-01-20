@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8C407AEF-29F0-4C21-9EB8-8D640D395239}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SqlToCsharpSampleConsoleApp</RootNamespace>
+    <RootNamespace>SqlToCsharpSample</RootNamespace>
     <AssemblyName>SqlToCsharpSampleConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="*.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

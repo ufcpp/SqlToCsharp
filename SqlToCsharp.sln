@@ -12,6 +12,9 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SqlToCsharpSampleDatabase", "samples\SqlToCsharpSampleDatabase\SqlToCsharpSampleDatabase.sqlproj", "{B830386C-45DA-41ED-9397-300675C188D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlToCsharpSampleConsoleApp", "samples\SqlToCsharpSampleConsoleApp\SqlToCsharpSampleConsoleApp.csproj", "{8C407AEF-29F0-4C21-9EB8-8D640D395239}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B830386C-45DA-41ED-9397-300675C188D8} = {B830386C-45DA-41ED-9397-300675C188D8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
