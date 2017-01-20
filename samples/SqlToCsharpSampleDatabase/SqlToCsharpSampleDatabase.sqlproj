@@ -58,4 +58,12 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Character.sql" />
+    <Build Include="Weapon.sql" />
+    <Build Include="CharacterSlot.sql" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)\src\SqlToCsharp\bin\Debug\SqlToCsharp $(ProjectDir) $(SolutionDir)\samples\SqlToCsharpSampleConsoleApp SqlToCsharpSample</PostBuildEvent>
+  </PropertyGroup>
 </Project>
