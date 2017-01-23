@@ -50,8 +50,8 @@ namespace SqlToCsharp
                     case "NVARCHAR":
                     case "VARCHAR": return ("string", false);
                     case "DATETIMEOFFSET": return ("DateTimeOffset?", false);
-					case "DATETIME2": return ("DateTime?", false);
-					default: throw new NotSupportedException(name);
+                    case "DATETIME2": return ("DateTime?", false);
+                    default: throw new NotSupportedException(name);
                 }
             }
             else
@@ -66,8 +66,8 @@ namespace SqlToCsharp
                     case "NVARCHAR":
                     case "VARCHAR": return ("string", true);
                     case "DATETIMEOFFSET": return ("DateTimeOffset", false);
-					case "DATETIME2": return ("DateTime", false);
-					default: throw new NotSupportedException(name);
+                    case "DATETIME2": return ("DateTime", false);
+                    default: throw new NotSupportedException(name);
                 }
             }
         }
