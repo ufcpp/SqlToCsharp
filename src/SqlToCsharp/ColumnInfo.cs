@@ -26,10 +26,10 @@ namespace SqlToCsharp
         private static int? FindPrimaryKeyConstraint(ColumnDefinition column, IList<ConstraintDefinition> tableConstraints)
         {
             var cons =
-				from uc in tableConstraints
-					where uc is UniqueConstraintDefinition
-				from col in ((UniqueConstraintDefinition)uc).Columns.Indexed()
-					where col.item.Column.MultiPartIdentifier.Identifiers.Last().Value == column.ColumnIdentifier.Value
+                from uc in tableConstraints
+                where uc is UniqueConstraintDefinition
+                from col in ((UniqueConstraintDefinition)uc).Columns.Indexed()
+                where col.item.Column.MultiPartIdentifier.Identifiers.Last().Value == column.ColumnIdentifier.Value
                 select (int?)col.index;
 
             return cons.FirstOrDefault();
