@@ -6,7 +6,8 @@
     [Weapon1Id] INT NOT NULL,
     [Weapon2Id] INT NOT NULL,
     [Exp]      INT NOT NULL,
-    CONSTRAINT [PK_CharacerSlot] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_CharacerSlot] PRIMARY KEY CLUSTERED ([Id] ASC), 
+    CONSTRAINT [AK_CharacterSlot_Column] UNIQUE ([SlotIndex], [CharacterId])
 );
 
 
