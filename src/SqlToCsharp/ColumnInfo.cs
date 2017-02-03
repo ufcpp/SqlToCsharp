@@ -27,6 +27,7 @@ namespace SqlToCsharp
         {
             var cons =
                 from uc in tableConstraints.OfType<UniqueConstraintDefinition>()
+                where uc.IsPrimaryKey
                 from col in uc.Columns.Indexed()
                 where col.item.Column.MultiPartIdentifier.Identifiers.Last().Value == column.ColumnIdentifier.Value
                 select (int?)col.index;
