@@ -35,7 +35,7 @@ namespace SqlToCsharp
                 if (generated == current) return;
             }
 
-            File.WriteAllText(targetFile, generated);
+            File.WriteAllText(targetFile, generated, Encoding.UTF8);
         }
 
         /// <summary>
