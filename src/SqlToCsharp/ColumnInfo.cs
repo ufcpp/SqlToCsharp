@@ -39,6 +39,11 @@ namespace SqlToCsharp
         private const string Required = "Required";
         private const string Timestamp = "Timestamp";
         private static string[] None => Array.Empty<string>();
+        private static string ArrayLength(DataTypeReference t)
+        {
+            if (!(t is ParameterizedDataTypeReference p)) return null;
+            return $"MaxLength({p.Parameters[0].Value})";
+        }
 
         private static (string typeName, string[] attributes) GetType(DataTypeReference t, IEnumerable<ConstraintDefinition> constraints)
         {
@@ -60,7 +65,7 @@ namespace SqlToCsharp
                     case "timestamp":
                     case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", None);
+                    case "VARBINARY": return ("byte[]", new[] { ArrayLength(t) });
                     default: throw new NotSupportedException(name);
                 }
             }
@@ -79,7 +84,7 @@ namespace SqlToCsharp
                     case "DATETIME2": return ("DateTime", None);
                     case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", new[] { Required });
+                    case "VARBINARY": return ("byte[]", new[] { Required, ArrayLength(t) });
                     default: throw new NotSupportedException(name);
                 }
             }

@@ -12,10 +12,14 @@ namespace SqlToCsharpSample
         [Column(Order = 0)]
         public int Id { get; set; }
         [Required]
+        [MaxLength(32)]
         public byte[] Data { get; set; }
+        [MaxLength(8)]
         public byte[] NullableData { get; set; }
         [Required]
+        [MaxLength(128)]
         public byte[] VarData { get; set; }
+        [MaxLength(512)]
         public byte[] NullableVarData { get; set; }
     }
 }
