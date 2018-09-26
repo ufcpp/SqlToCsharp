@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SqlToCsharp": {
+      "commandName": "Project",
+      "commandLineArgs": "$(SolutionDir)\\samples\\SqlToCsharpSampleDatabase $(SolutionDir)\\samples\\SqlToCsharpSampleConsoleApp SqlToCsharpSample"
+    }
+  }
+}
