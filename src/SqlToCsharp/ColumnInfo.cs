@@ -9,7 +9,7 @@ namespace SqlToCsharp
     {
         public string Name { get; }
         public string TypeName { get; }
-        public IEnumerable<string> Attributes => _attributes;
+        public IEnumerable<string> Attributes { get; }
         public int? KeyColumnOrder { get; }
 
         private List<string> _attributes = new List<string>();
@@ -17,10 +17,7 @@ namespace SqlToCsharp
         public ColumnInfo(ColumnDefinition c, IList<ConstraintDefinition> tableConstraints)
         {
             Name = c.ColumnIdentifier.Value;
-            var (tn, isRequired, isRowversion) = GetType(c.DataType, c.Constraints);
-            TypeName = tn;
-            if (isRequired) _attributes.Add("Required");
-            if (isRowversion) _attributes.Add("Timestamp");
+            (TypeName, Attributes) = GetType(c.DataType, c.Constraints);
             KeyColumnOrder = FindPrimaryKeyConstraint(c, tableConstraints);
         }
 
@@ -39,7 +36,11 @@ namespace SqlToCsharp
             return cons.FirstOrDefault();
         }
 
-        private static (string typeName, bool isRequired, bool isRowversion) GetType(DataTypeReference t, IEnumerable<ConstraintDefinition> constraints)
+        private const string Required = "Required";
+        private const string Timestamp = "Timestamp";
+        private static string[] None => Array.Empty<string>();
+
+        private static (string typeName, string[] attributes) GetType(DataTypeReference t, IEnumerable<ConstraintDefinition> constraints)
         {
             var name = t.Name.Identifiers.Last().Value;
 
@@ -47,19 +48,19 @@ namespace SqlToCsharp
             {
                 switch (name)
                 {
-                    case "INT": return ("int?", false, false);
-                    case "BIGINT": return ("long?", false, false);
-                    case "SMALLINT": return ("short?", false, false);
-                    case "TINYINT": return ("byte?", false, false);
-                    case "BIT": return ("bool?", false, false);
+                    case "INT": return ("int?", None);
+                    case "BIGINT": return ("long?", None);
+                    case "SMALLINT": return ("short?", None);
+                    case "TINYINT": return ("byte?", None);
+                    case "BIT": return ("bool?", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", false, false);
-                    case "DATETIMEOFFSET": return ("DateTimeOffset?", false, false);
-                    case "DATETIME2": return ("DateTime?", false, false);
+                    case "VARCHAR": return ("string", None);
+                    case "DATETIMEOFFSET": return ("DateTimeOffset?", None);
+                    case "DATETIME2": return ("DateTime?", None);
                     case "timestamp":
-                    case "ROWVERSION": return ("byte[]", false, true);
+                    case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", false, false);
+                    case "VARBINARY": return ("byte[]", None);
                     default: throw new NotSupportedException(name);
                 }
             }
@@ -67,18 +68,18 @@ namespace SqlToCsharp
             {
                 switch (name)
                 {
-                    case "INT": return ("int", false, false);
-                    case "BIGINT": return ("long", false, false);
-                    case "SMALLINT": return ("short", false, false);
-                    case "TINYINT": return ("byte", false, false);
-                    case "BIT": return ("bool", false, false);
+                    case "INT": return ("int", None);
+                    case "BIGINT": return ("long", None);
+                    case "SMALLINT": return ("short", None);
+                    case "TINYINT": return ("byte", None);
+                    case "BIT": return ("bool", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", true, false);
-                    case "DATETIMEOFFSET": return ("DateTimeOffset", false, false);
-                    case "DATETIME2": return ("DateTime", false, false);
-                    case "ROWVERSION": return ("byte[]", false, true);
+                    case "VARCHAR": return ("string", new[] { Required });
+                    case "DATETIMEOFFSET": return ("DateTimeOffset", None);
+                    case "DATETIME2": return ("DateTime", None);
+                    case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", true, false);
+                    case "VARBINARY": return ("byte[]", new[] { Required });
                     default: throw new NotSupportedException(name);
                 }
             }
