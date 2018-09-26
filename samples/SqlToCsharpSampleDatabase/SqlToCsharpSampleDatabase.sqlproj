@@ -63,6 +63,7 @@
     <Build Include="Weapon.sql" />
     <Build Include="CharacterSlot.sql" />
     <Build Include="Room.sql" />
+    <Build Include="BinaryData.sql" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)\src\SqlToCsharp\bin\Debug\SqlToCsharp $(ProjectDir) $(SolutionDir)\samples\SqlToCsharpSampleConsoleApp SqlToCsharpSample</PostBuildEvent>
