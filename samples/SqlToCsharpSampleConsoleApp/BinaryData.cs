@@ -14,5 +14,8 @@ namespace SqlToCsharpSample
         [Required]
         public byte[] Data { get; set; }
         public byte[] NullableData { get; set; }
+        [Required]
+        public byte[] VarData { get; set; }
+        public byte[] NullableVarData { get; set; }
     }
 }

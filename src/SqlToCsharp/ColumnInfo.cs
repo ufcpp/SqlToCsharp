@@ -58,7 +58,8 @@ namespace SqlToCsharp
                     case "DATETIME2": return ("DateTime?", false, false);
                     case "timestamp":
                     case "ROWVERSION": return ("byte[]", false, true);
-                    case "BINARY": return ("byte[]", false, false);
+                    case "BINARY":
+                    case "VARBINARY": return ("byte[]", false, false);
                     default: throw new NotSupportedException(name);
                 }
             }
@@ -76,7 +77,8 @@ namespace SqlToCsharp
                     case "DATETIMEOFFSET": return ("DateTimeOffset", false, false);
                     case "DATETIME2": return ("DateTime", false, false);
                     case "ROWVERSION": return ("byte[]", false, true);
-                    case "BINARY": return ("byte[]", true, false);
+                    case "BINARY":
+                    case "VARBINARY": return ("byte[]", true, false);
                     default: throw new NotSupportedException(name);
                 }
             }
