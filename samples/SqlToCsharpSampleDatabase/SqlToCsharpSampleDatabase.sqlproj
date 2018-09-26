@@ -66,6 +66,7 @@
     <Build Include="BinaryData.sql" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\src\SqlToCsharp\bin\Debug\net472\SqlToCsharp $(ProjectDir) $(SolutionDir)\samples\SqlToCsharpSampleConsoleApp SqlToCsharpSample</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
