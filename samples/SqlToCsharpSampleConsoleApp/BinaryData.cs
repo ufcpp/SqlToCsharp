@@ -21,5 +21,8 @@ namespace SqlToCsharpSample
         public byte[] VarData { get; set; }
         [MaxLength(512)]
         public byte[] NullableVarData { get; set; }
+        [Required]
+        public byte[] Max { get; set; }
+        public byte[] NullableMax { get; set; }
     }
 }

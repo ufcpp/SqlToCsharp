@@ -42,12 +42,16 @@ namespace SqlToCsharp
         private static string ArrayLength(DataTypeReference t)
         {
             if (!(t is ParameterizedDataTypeReference p)) return null;
-            return $"MaxLength({p.Parameters[0].Value})";
+            var v = p.Parameters[0].Value;
+            if (v == "MAX") return null;
+            return $"MaxLength({v})";
         }
         private static string StringLength(DataTypeReference t)
         {
             if (!(t is ParameterizedDataTypeReference p)) return null;
-            return $"StringLength({p.Parameters[0].Value})";
+            var v = p.Parameters[0].Value;
+            if (v == "MAX") return null;
+            return $"StringLength({v})";
         }
 
         private static (string typeName, string[] attributes) GetType(DataTypeReference t, IEnumerable<ConstraintDefinition> constraints)
@@ -64,13 +68,13 @@ namespace SqlToCsharp
                     case "TINYINT": return ("byte?", None);
                     case "BIT": return ("bool?", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", new[] { StringLength(t) });
+                    case "VARCHAR": return ("string", StringLength(t) is string sl ? new[] { sl } : None);
                     case "DATETIMEOFFSET": return ("DateTimeOffset?", None);
                     case "DATETIME2": return ("DateTime?", None);
                     case "timestamp":
                     case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", new[] { ArrayLength(t) });
+                    case "VARBINARY": return ("byte[]", ArrayLength(t) is string al ? new[] { al } : None);
                     default: throw new NotSupportedException(name);
                 }
             }
@@ -84,12 +88,12 @@ namespace SqlToCsharp
                     case "TINYINT": return ("byte", None);
                     case "BIT": return ("bool", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", new[] { Required, StringLength(t) });
+                    case "VARCHAR": return ("string", StringLength(t) is string sl ? new[] { Required, sl } : new[] { Required });
                     case "DATETIMEOFFSET": return ("DateTimeOffset", None);
                     case "DATETIME2": return ("DateTime", None);
                     case "ROWVERSION": return ("byte[]", new[] { Timestamp });
                     case "BINARY":
-                    case "VARBINARY": return ("byte[]", new[] { Required, ArrayLength(t) });
+                    case "VARBINARY": return ("byte[]", ArrayLength(t) is string al ? new[] { Required, al } : new[] { Required });
                     default: throw new NotSupportedException(name);
                 }
             }

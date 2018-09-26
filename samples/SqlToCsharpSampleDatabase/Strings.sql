@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Strings]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [S] VARCHAR(50) NOT NULL, 
+    [NS] VARCHAR(50) NULL, 
+    [MS] VARCHAR(MAX) NOT NULL, 
+    [NMS] NVARCHAR(MAX) NULL
+)

@@ -4,5 +4,7 @@
     [Data] BINARY(32) NOT NULL, 
     [NullableData] BINARY(8) NULL, 
     [VarData] VARBINARY(128) NOT NULL, 
-    [NullableVarData] VARBINARY(512) NULL
+    [NullableVarData] VARBINARY(512) NULL, 
+    [Max] VARBINARY(MAX) NOT NULL, 
+    [NullableMax] VARBINARY(MAX) NULL
 )

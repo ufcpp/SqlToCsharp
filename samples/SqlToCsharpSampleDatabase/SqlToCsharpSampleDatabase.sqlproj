@@ -64,6 +64,7 @@
     <Build Include="CharacterSlot.sql" />
     <Build Include="Room.sql" />
     <Build Include="BinaryData.sql" />
+    <Build Include="Strings.sql" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>
