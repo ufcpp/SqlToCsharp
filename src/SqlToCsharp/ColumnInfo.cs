@@ -44,6 +44,11 @@ namespace SqlToCsharp
             if (!(t is ParameterizedDataTypeReference p)) return null;
             return $"MaxLength({p.Parameters[0].Value})";
         }
+        private static string StringLength(DataTypeReference t)
+        {
+            if (!(t is ParameterizedDataTypeReference p)) return null;
+            return $"StringLength({p.Parameters[0].Value})";
+        }
 
         private static (string typeName, string[] attributes) GetType(DataTypeReference t, IEnumerable<ConstraintDefinition> constraints)
         {
@@ -59,7 +64,7 @@ namespace SqlToCsharp
                     case "TINYINT": return ("byte?", None);
                     case "BIT": return ("bool?", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", None);
+                    case "VARCHAR": return ("string", new[] { StringLength(t) });
                     case "DATETIMEOFFSET": return ("DateTimeOffset?", None);
                     case "DATETIME2": return ("DateTime?", None);
                     case "timestamp":
@@ -79,7 +84,7 @@ namespace SqlToCsharp
                     case "TINYINT": return ("byte", None);
                     case "BIT": return ("bool", None);
                     case "NVARCHAR":
-                    case "VARCHAR": return ("string", new[] { Required });
+                    case "VARCHAR": return ("string", new[] { Required, StringLength(t) });
                     case "DATETIMEOFFSET": return ("DateTimeOffset", None);
                     case "DATETIME2": return ("DateTime", None);
                     case "ROWVERSION": return ("byte[]", new[] { Timestamp });

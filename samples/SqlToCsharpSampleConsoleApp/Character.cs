@@ -13,6 +13,7 @@ namespace SqlToCsharpSample
         public int Id { get; set; }
         public int MasterId { get; set; }
         [Required]
+        [StringLength(20)]
         public string Name { get; set; }
         public int Exp { get; set; }
     }
