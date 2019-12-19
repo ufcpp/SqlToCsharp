@@ -47,7 +47,7 @@ dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
 ./SqlToCsharp_linux-x64 ./samples/SqlToCsharpSampleDatabase ./samples/SqlToCsharpSampleConsoleApp SqlToCsharpSample
 ```
 
-**linux**
+**macOS**
 
 not-confirm on macos.
 

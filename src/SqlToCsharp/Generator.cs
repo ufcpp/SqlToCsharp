@@ -28,11 +28,13 @@ namespace SqlToCsharp
 
             var generated = Generate(@namespace, t);
 
-            if (File.Exists(targetFolder))
-            {
-                var current = File.ReadAllText(targetFile, Encoding);
+            if (Directory.Exists(targetFolder))
+                Directory.CreateDirectory(targetFolder);
 
-                if (generated == current) return;
+            // skip if generated file is binary equal to exists.
+            if (File.Exists(targetFile) && File.ReadAllText(targetFile, Encoding) == generated)
+            {
+                return;
             }
 
             File.WriteAllText(targetFile, generated, Encoding.UTF8);
