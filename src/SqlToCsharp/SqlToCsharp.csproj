@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
   </PropertyGroup>
 
@@ -26,7 +26,6 @@
 
   <PropertyGroup Condition="'$(PublishSingleFile)' == 'true'">
     <AssemblyName>SqlToCsharp_$(RuntimeIdentifier)</AssemblyName>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
     <IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
